@@ -34,7 +34,7 @@ const socials = [
   {
     href: 'https://www.roblox.com/games/121901103139963/Bloxfun',
     label: 'Roblox',
-    icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 8h3l1 4 1-4h3"/><path d="M8 16v-4"/><path d="M16 16v-4"/></svg>,
+    icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M8 8h4l1.5 4L15 8h4" strokeLinecap="round" strokeLinejoin="round"/><path d="M8 16V8" strokeLinecap="round"/><path d="M20 16V8" strokeLinecap="round"/></svg>,
   },
   {
     href: 'https://x.com/bloxfunn',
@@ -50,13 +50,6 @@ function Hero() {
     <section className="hero">
       <div className="hero-inner">
         <div className="hero-text">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-          >
-            <div className="label"><span className="label-dot" />Now live on Roblox</div>
-          </motion.div>
           <motion.h1
             className="hero-h1"
             initial={{ opacity: 0, y: 20 }}
@@ -87,6 +80,22 @@ function Hero() {
             <a href="#token" className="btn-secondary">
               Token
             </a>
+          </motion.div>
+          <motion.div
+            className="hero-socials"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            <div className="hero-socials-line" />
+            <div className="hero-socials-icons">
+              {socials.map((s, i) => (
+                <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" className="hero-social-icon" aria-label={s.label}>
+                  {s.icon}
+                </a>
+              ))}
+            </div>
+            <div className="hero-socials-line" />
           </motion.div>
         </div>
 
@@ -142,7 +151,6 @@ function TokenSection() {
           <div className="token-hero">
             <div className="token-hero-bg" />
             <div className="token-hero-inner">
-              <div className="label"><span className="label-dot" />Coming to Solana</div>
               <h2 className="token-hero-h">The bridge token<br />between two worlds.</h2>
               <p className="token-hero-p">
                 Blox.fun will launch its own token on Solana. The native bridge currency connecting Roblox players to the open market.
@@ -217,13 +225,6 @@ function Footer() {
     >
       <div className="footer-wrap">
         <div className="footer-credit">Blox.fun</div>
-        <div className="footer-social">
-          {socials.map((s, i) => (
-            <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" className="footer-social-icon" aria-label={s.label}>
-              {s.icon}
-            </a>
-          ))}
-        </div>
       </div>
     </motion.footer>
   )
