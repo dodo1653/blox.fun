@@ -126,7 +126,7 @@ function TokenSection() {
     {
       href: 'https://www.roblox.com/games/121901103139963/Bloxfun',
       label: 'Roblox',
-      icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M9 8v8M15 8v8M9 12h6"/></svg>,
+      icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 8h3l1 4 1-4h3"/><path d="M8 16v-4"/><path d="M16 16v-4"/></svg>,
     },
     {
       href: 'https://x.com/bloxfunn',
@@ -138,15 +138,6 @@ function TokenSection() {
   return (
     <section className="section" id="token">
       <div className="section-wrap">
-        <div className="social-row">
-          {socials.map((s, i) => (
-            <FadeSection key={i} delay={i * 0.08}>
-              <a href={s.href} target="_blank" rel="noopener noreferrer" className="social-icon" aria-label={s.label}>
-                {s.icon}
-              </a>
-            </FadeSection>
-          ))}
-        </div>
         <FadeSection>
           <div className="token-hero">
             <div className="token-hero-bg" />
@@ -226,9 +217,12 @@ function Footer() {
     >
       <div className="footer-wrap">
         <div className="footer-credit">Blox.fun</div>
-        <div className="footer-links">
-          <a href="https://x.com/bloxfun" target="_blank" rel="noopener noreferrer">X</a>
-          <a href="https://www.roblox.com/games/121901103139963/Bloxfun" target="_blank" rel="noopener noreferrer">Roblox</a>
+        <div className="footer-social">
+          {socials.map((s, i) => (
+            <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" className="footer-social-icon" aria-label={s.label}>
+              {s.icon}
+            </a>
+          ))}
         </div>
       </div>
     </motion.footer>
