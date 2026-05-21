@@ -26,23 +26,6 @@ const capabilities = [
 
 
 
-function Header() {
-  return (
-    <motion.header
-      className="header"
-      initial={{ opacity: 0, y: -12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-    >
-      <div className="header-wrap">
-        <a href="#" className="header-logo">
-          <img src="/logo.png" alt="Blox.fun" className="header-logo-img" />
-        </a>
-      </div>
-    </motion.header>
-  )
-}
-
 function Hero() {
   return (
     <section className="hero">
@@ -229,7 +212,6 @@ export default function App() {
     <>
       <Background />
       <div className="content">
-        <Header />
         <Hero />
         <TokenSection />
         <Footer />
