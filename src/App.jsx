@@ -38,10 +38,6 @@ function Header() {
         <a href="#" className="header-logo">
           <img src="/logo.png" alt="Blox.fun" className="header-logo-img" />
         </a>
-        <nav className="header-nav">
-          <a href="#token">Token</a>
-          <a href="https://www.roblox.com/games/121901103139963/Bloxfun" target="_blank" rel="noopener noreferrer" className="header-cta">Play</a>
-        </nav>
       </div>
     </motion.header>
   )
