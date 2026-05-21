@@ -68,7 +68,7 @@ function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <div className="badge">Now live on Roblox</div>
+            <div className="badge"><span className="badge-dot" />Now live on Roblox</div>
           </motion.div>
           <motion.h1
             className="hero-h1"
@@ -153,7 +153,7 @@ function Features() {
       <div className="section-wrap">
         <FadeSection>
           <div className="section-header">
-            <div className="badge">Capabilities</div>
+            <div className="badge"><span className="badge-dot" />Capabilities</div>
             <h2 className="section-h">Everything you need.<br />Nothing you don&rsquo;t.</h2>
             <p className="section-p">Blox.fun brings the full on-chain trading stack into Roblox. No compromises, no shortcuts.</p>
           </div>
@@ -183,35 +183,11 @@ function Experience() {
       <div className="section-wrap">
         <FadeSection>
           <div className="section-header">
-            <div className="badge">Platform</div>
+            <div className="badge"><span className="badge-dot" />Platform</div>
             <h2 className="section-h">Gaming and crypto.<br />Finally on the same page.</h2>
             <p className="section-p">No seed phrases, no browser extensions, no complexity. Just Roblox and Solana, stitched together so seamlessly it fades into the background.</p>
           </div>
         </FadeSection>
-
-        <div className="manifesto glass">
-          <div className="manifesto-quote">
-            &ldquo;The barrier between Roblox and crypto isn&rsquo;t technology. It&rsquo;s design.&rdquo;
-          </div>
-          <div className="manifesto-body">
-            <p>We built Blox.fun to disappear. Every decision was made to remove friction — one click to connect, one click to trade, one click to bridge. No wallets to install, no tokens to manage, no gas to buy. Just a game that happens to be on-chain.</p>
-          </div>
-          <div className="manifesto-divider" />
-          <div className="manifesto-values">
-            <div className="manifesto-value">
-              <span className="manifesto-value-num">01</span>
-              <span className="manifesto-value-label">One-click onboarding</span>
-            </div>
-            <div className="manifesto-value">
-              <span className="manifesto-value-num">02</span>
-              <span className="manifesto-value-label">Solana under the hood</span>
-            </div>
-            <div className="manifesto-value">
-              <span className="manifesto-value-num">03</span>
-              <span className="manifesto-value-label">Roblox on the surface</span>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   )
@@ -225,7 +201,7 @@ function TokenSection() {
           <div className="token-hero glass">
             <div className="token-hero-bg" />
             <div className="token-hero-inner">
-              <div className="badge">Coming to Solana</div>
+              <div className="badge"><span className="badge-dot" />Coming to Solana</div>
               <h2 className="token-hero-h">The bridge token<br />between two worlds.</h2>
               <p className="token-hero-p">
                 Blox.fun will launch its own token on Solana. The native bridge currency connecting Roblox players to the open market.
