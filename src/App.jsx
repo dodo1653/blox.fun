@@ -24,14 +24,7 @@ const capabilities = [
   { cmd: 'Launch', desc: 'Fair, on a bonding curve', state: 'Open', stateType: 'neutral' },
 ]
 
-const features = [
-  { num: '01', title: 'Trade on Roblox', desc: 'Buy and sell tokens directly inside Roblox. Real Robux, real trades, real-time charts. Every transaction settled on Solana.' },
-  { num: '02', title: 'On-Chain Backed', desc: 'Your assets are real SPL tokens, not game items. Bridge them out, sell them, hold them. True ownership from day one.' },
-  { num: '03', title: 'Live Markets', desc: 'Real-time order books, candlestick charts, top gainers, and volume trackers. The full trading experience, inside a game.' },
-  { num: '04', title: 'Instant Swaps', desc: 'No waiting, no gas wars, no failed transactions. Swap tokens with Robux in milliseconds on Solana rails.' },
-  { num: '05', title: 'Solana Bridge', desc: 'Bridge tokens out of Roblox directly to your Phantom or Solflare wallet. Take your assets wherever you want.' },
-  { num: '06', title: 'Fair Launch', desc: 'No presale, no team allocation, no insider deals. Every token launches on a bonding curve. The market decides.' },
-]
+
 
 function Header() {
   return (
@@ -43,13 +36,9 @@ function Header() {
     >
       <div className="header-wrap">
         <a href="#" className="header-logo">
-          <div className="logo-ring">
-            <img src="/logo.png" alt="Blox.fun" className="header-logo-img" />
-          </div>
+          <img src="/logo.png" alt="Blox.fun" className="header-logo-img" />
         </a>
         <nav className="header-nav">
-          <a href="#features">Capabilities</a>
-          <a href="#experience">Platform</a>
           <a href="#token">Token</a>
           <a href="https://www.roblox.com/games/121901103139963/Bloxfun" target="_blank" rel="noopener noreferrer" className="header-cta">Play</a>
         </nav>
@@ -97,8 +86,8 @@ function Hero() {
             <a href="https://www.roblox.com/games/121901103139963/Bloxfun" target="_blank" rel="noopener noreferrer" className="btn-primary">
               Play Blox.fun
             </a>
-            <a href="#features" className="btn-secondary">
-              Learn more
+            <a href="#token" className="btn-secondary">
+              Token
             </a>
           </motion.div>
         </div>
@@ -142,52 +131,6 @@ function Hero() {
             ))}
           </div>
         </motion.div>
-      </div>
-    </section>
-  )
-}
-
-function Features() {
-  return (
-    <section className="section" id="features">
-      <div className="section-wrap">
-        <FadeSection>
-          <div className="section-header">
-            <div className="badge"><span className="badge-dot" />Capabilities</div>
-            <h2 className="section-h">Everything you need.<br />Nothing you don&rsquo;t.</h2>
-            <p className="section-p">Blox.fun brings the full on-chain trading stack into Roblox. No compromises, no shortcuts.</p>
-          </div>
-        </FadeSection>
-        <div className="feature-list">
-          {features.map((f, i) => (
-            <FadeSection key={i} delay={i * 0.04}>
-              <div className="feature-row glass">
-                <div className="feature-num">{f.num}</div>
-                <div className="feature-body">
-                  <div className="feature-title">{f.title}</div>
-                  <div className="feature-desc">{f.desc}</div>
-                </div>
-                <div className="feature-accent" />
-              </div>
-            </FadeSection>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function Experience() {
-  return (
-    <section className="section" id="experience">
-      <div className="section-wrap">
-        <FadeSection>
-          <div className="section-header">
-            <div className="badge"><span className="badge-dot" />Platform</div>
-            <h2 className="section-h">Gaming and crypto.<br />Finally on the same page.</h2>
-            <p className="section-p">No seed phrases, no browser extensions, no complexity. Just Roblox and Solana, stitched together so seamlessly it fades into the background.</p>
-          </div>
-        </FadeSection>
       </div>
     </section>
   )
@@ -292,8 +235,6 @@ export default function App() {
       <div className="content">
         <Header />
         <Hero />
-        <Features />
-        <Experience />
         <TokenSection />
         <Footer />
       </div>
