@@ -1,5 +1,6 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import Lenis from 'lenis'
 import Background from './Background'
 
 function FadeSection({ children, delay = 0 }) {
@@ -36,7 +37,7 @@ function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <div className="badge"><span className="badge-dot" />Now live on Roblox</div>
+            <div className="label">Now live on Roblox</div>
           </motion.div>
           <motion.h1
             className="hero-h1"
@@ -123,7 +124,7 @@ function TokenSection() {
           <div className="token-hero glass">
             <div className="token-hero-bg" />
             <div className="token-hero-inner">
-              <div className="badge"><span className="badge-dot" />Coming to Solana</div>
+              <div className="label">Coming to Solana</div>
               <h2 className="token-hero-h">The bridge token<br />between two worlds.</h2>
               <p className="token-hero-p">
                 Blox.fun will launch its own token on Solana. The native bridge currency connecting Roblox players to the open market.
@@ -208,6 +209,13 @@ function Footer() {
 }
 
 export default function App() {
+  useEffect(() => {
+    const lenis = new Lenis({ duration: 1.2, easing: (t) => 1 - Math.pow(1 - t, 3) })
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf) }
+    requestAnimationFrame(raf)
+    return () => lenis.destroy()
+  }, [])
+
   return (
     <>
       <Background />
