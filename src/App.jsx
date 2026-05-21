@@ -17,46 +17,20 @@ function FadeSection({ children, delay = 0 }) {
   )
 }
 
-function ScaleIn({ children, delay = 0 }) {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-40px' })
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, scale: 0.96 }}
-      animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.96 }}
-      transition={{ duration: 0.5, delay, ease: [0.25, 0.1, 0.25, 1] }}
-    >
-      {children}
-    </motion.div>
-  )
-}
-
-const features = [
-  { title: 'Trade on Roblox', desc: 'Buy and sell tokens directly inside Roblox. Real Robux, real trades, real-time charts.' },
-  { title: 'On-Chain Backed', desc: 'Every trade is secured by Solana. Your assets are real tokens, not just game items.' },
-  { title: 'Instant Swaps', desc: 'No waiting. No gas wars. Swap tokens with Robux in milliseconds.' },
-  { title: 'Live Markets', desc: 'Real-time order books, candlestick charts, and top gainers.' },
-  { title: 'Solana Bridge', desc: 'Bridge your tokens out of Roblox to your Solana wallet. True ownership.' },
-  { title: 'Fair Launch', desc: 'No presale. No team allocation. Every token launches fairly on a bonding curve.' },
+const capabilities = [
+  { cmd: 'Trade', desc: 'On Roblox, with real Robux', state: 'Live', stateType: 'active' },
+  { cmd: 'Bridge', desc: 'To Solana, to your wallet', state: 'Live', stateType: 'active' },
+  { cmd: 'Swap', desc: 'In milliseconds, no gas', state: 'Instant', stateType: 'neutral' },
+  { cmd: 'Launch', desc: 'Fair, on a bonding curve', state: 'Open', stateType: 'neutral' },
 ]
 
-const pillars = [
-  {
-    label: 'Connected',
-    title: 'Roblox meets Solana',
-    desc: 'The first bridge between the world\'s largest gaming platform and on-chain markets. No complexity, just connection.',
-  },
-  {
-    label: 'Instant',
-    title: 'Real-time by design',
-    desc: 'Millisecond swaps, live order books, instant settlements. The speed of Solana, inside Roblox.',
-  },
-  {
-    label: 'Open',
-    title: 'True ownership',
-    desc: 'Every token is yours. Bridge out to any Solana wallet. No walls, no gatekeepers.',
-  },
+const features = [
+  { num: '01', title: 'Trade on Roblox', desc: 'Buy and sell tokens directly inside Roblox. Real Robux, real trades, real-time charts. Every transaction settled on Solana.' },
+  { num: '02', title: 'On-Chain Backed', desc: 'Your assets are real SPL tokens, not game items. Bridge them out, sell them, hold them. True ownership from day one.' },
+  { num: '03', title: 'Live Markets', desc: 'Real-time order books, candlestick charts, top gainers, and volume trackers. The full trading experience, inside a game.' },
+  { num: '04', title: 'Instant Swaps', desc: 'No waiting, no gas wars, no failed transactions. Swap tokens with Robux in milliseconds on Solana rails.' },
+  { num: '05', title: 'Solana Bridge', desc: 'Bridge tokens out of Roblox directly to your Phantom or Solflare wallet. Take your assets wherever you want.' },
+  { num: '06', title: 'Fair Launch', desc: 'No presale, no team allocation, no insider deals. Every token launches on a bonding curve. The market decides.' },
 ]
 
 function Header() {
@@ -69,11 +43,13 @@ function Header() {
     >
       <div className="header-wrap">
         <a href="#" className="header-logo">
-          <img src="/logo.png" alt="Blox.fun" className="header-logo-img" />
+          <div className="logo-ring">
+            <img src="/logo.png" alt="Blox.fun" className="header-logo-img" />
+          </div>
         </a>
         <nav className="header-nav">
-          <a href="#features">Features</a>
-          <a href="#experience">Experience</a>
+          <a href="#features">Capabilities</a>
+          <a href="#experience">Platform</a>
           <a href="#token">Token</a>
           <a href="https://www.roblox.com/games/121901103139963/Bloxfun" target="_blank" rel="noopener noreferrer" className="header-cta">Play</a>
         </nav>
@@ -83,13 +59,6 @@ function Header() {
 }
 
 function Hero() {
-  const coins = [
-    { name: 'BONK', ticker: 'BONK', price: '0.0000234', change: '+12.4%', up: true, color: '#FF6B6B' },
-    { name: 'WIF', ticker: 'WIF', price: '0.001245', change: '+8.2%', up: true, color: '#FFB74D' },
-    { name: 'POPCAT', ticker: 'POPCAT', price: '0.000567', change: '+24.1%', up: true, color: '#4CAF50' },
-    { name: 'SAMO', ticker: 'SAMO', price: '0.000891', change: '-3.2%', up: false, color: '#4CA5FF' },
-  ]
-
   return (
     <section className="hero">
       <div className="hero-inner">
@@ -146,10 +115,14 @@ function Hero() {
               <span className="hero-card-dot" />
               <span className="hero-card-dot" />
             </div>
-            <div className="hero-card-search">Search tokens...</div>
+            <span className="hero-card-title">Blox.fun capabilities</span>
+            <div className="hero-card-search">
+              <span className="kbd">⌘K</span>
+              <span className="hero-card-search-text">Run a command...</span>
+            </div>
           </div>
           <div className="hero-card-body">
-            {coins.map((c, i) => (
+            {capabilities.map((c, i) => (
               <motion.div
                 key={i}
                 className="hero-card-row"
@@ -157,19 +130,14 @@ function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.35 + i * 0.06, duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
               >
-                <div className="hero-card-left">
-                  <div className="hero-card-icon" style={{ background: c.color }}>
-                    {c.name[0]}
-                  </div>
+                <div className="cap-left">
+                  <div className="cap-kbd">⌘{i + 1}</div>
                   <div>
-                    <div className="hero-card-name">{c.name}</div>
-                    <div className="hero-card-sub">{c.ticker}</div>
+                    <div className="cap-name">{c.cmd}</div>
+                    <div className="cap-desc">{c.desc}</div>
                   </div>
                 </div>
-                <div className="hero-card-right">
-                  <div className="hero-card-price">{c.price}</div>
-                  <div className={`hero-card-change ${c.up ? 'up' : 'down'}`}>{c.change}</div>
-                </div>
+                <span className={`cap-state cap-state--${c.stateType}`}>{c.state}</span>
               </motion.div>
             ))}
           </div>
@@ -185,17 +153,21 @@ function Features() {
       <div className="section-wrap">
         <FadeSection>
           <div className="section-header">
-            <div className="badge">Features</div>
-            <h2 className="section-h">Trade like pump.fun,<br />built for Roblox.</h2>
-            <p className="section-p">Everything you love about on-chain memecoin trading — now inside Roblox with real Robux.</p>
+            <div className="badge">Capabilities</div>
+            <h2 className="section-h">Everything you need.<br />Nothing you don&rsquo;t.</h2>
+            <p className="section-p">Blox.fun brings the full on-chain trading stack into Roblox. No compromises, no shortcuts.</p>
           </div>
         </FadeSection>
-        <div className="feature-grid">
+        <div className="feature-list">
           {features.map((f, i) => (
             <FadeSection key={i} delay={i * 0.04}>
-              <div className="feature-card glass">
-                <div className="feature-card-title">{f.title}</div>
-                <div className="feature-card-desc">{f.desc}</div>
+              <div className="feature-row glass">
+                <div className="feature-num">{f.num}</div>
+                <div className="feature-body">
+                  <div className="feature-title">{f.title}</div>
+                  <div className="feature-desc">{f.desc}</div>
+                </div>
+                <div className="feature-accent" />
               </div>
             </FadeSection>
           ))}
@@ -211,21 +183,34 @@ function Experience() {
       <div className="section-wrap">
         <FadeSection>
           <div className="section-header">
-            <div className="badge">Experience</div>
-            <h2 className="section-h">Built different.<br />Feels different.</h2>
-            <p className="section-p">Blox.fun reimagines what a gaming marketplace can be. No friction, no barriers — just pure connection between Roblox and Solana.</p>
+            <div className="badge">Platform</div>
+            <h2 className="section-h">Gaming and crypto.<br />Finally on the same page.</h2>
+            <p className="section-p">No seed phrases, no browser extensions, no complexity. Just Roblox and Solana, stitched together so seamlessly it fades into the background.</p>
           </div>
         </FadeSection>
-        <div className="pillar-grid">
-          {pillars.map((p, i) => (
-            <FadeSection key={i} delay={i * 0.08}>
-              <div className="pillar-card glass">
-                <div className="pillar-label">{p.label}</div>
-                <div className="pillar-title">{p.title}</div>
-                <div className="pillar-desc">{p.desc}</div>
-              </div>
-            </FadeSection>
-          ))}
+
+        <div className="manifesto glass">
+          <div className="manifesto-quote">
+            &ldquo;The barrier between Roblox and crypto isn&rsquo;t technology. It&rsquo;s design.&rdquo;
+          </div>
+          <div className="manifesto-body">
+            <p>We built Blox.fun to disappear. Every decision was made to remove friction — one click to connect, one click to trade, one click to bridge. No wallets to install, no tokens to manage, no gas to buy. Just a game that happens to be on-chain.</p>
+          </div>
+          <div className="manifesto-divider" />
+          <div className="manifesto-values">
+            <div className="manifesto-value">
+              <span className="manifesto-value-num">01</span>
+              <span className="manifesto-value-label">One-click onboarding</span>
+            </div>
+            <div className="manifesto-value">
+              <span className="manifesto-value-num">02</span>
+              <span className="manifesto-value-label">Solana under the hood</span>
+            </div>
+            <div className="manifesto-value">
+              <span className="manifesto-value-num">03</span>
+              <span className="manifesto-value-label">Roblox on the surface</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
