@@ -141,6 +141,14 @@ button {
   .hero-inner { grid-template-columns: 1fr; gap: 48px; text-align: center; }
 }
 
+.hero-typewriter {
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #7ab8ff;
+  line-height: 1.05;
+}
+
 .hero-text { display: flex; flex-direction: column; gap: 16px; }
 
 .hero-h1 {

@@ -1,7 +1,27 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Lenis from 'lenis'
 import Background from './Background'
+
+function Typewriter({ text, className, delay = 0 }) {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true })
+  return (
+    <span ref={ref} className={className}>
+      {text.split('').map((ch, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, y: 8, filter: 'blur(4px)' }}
+          animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+          transition={{ duration: 0.6, delay: delay + i * 0.06, ease: [0.25, 0.1, 0.25, 1] }}
+          style={{ display: 'inline-block' }}
+        >
+          {ch === ' ' ? '\u00A0' : ch}
+        </motion.span>
+      ))}
+    </span>
+  )
+}
 
 function FadeSection({ children, delay = 0 }) {
   const ref = useRef(null)
@@ -50,11 +70,12 @@ function Hero() {
     <section className="hero">
       <div className="hero-inner">
         <div className="hero-text">
+          <Typewriter text="blox.fun" className="hero-typewriter" delay={0.1} />
           <motion.h1
             className="hero-h1"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: 0.5, delay: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
           >
             The first on-chain<br />
             market on Roblox.
@@ -231,21 +252,29 @@ function Footer() {
 }
 
 export default function App() {
+  const [ready, setReady] = useState(false)
+
   useEffect(() => {
     const lenis = new Lenis({ duration: 1.2, easing: (t) => 1 - Math.pow(1 - t, 3) })
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf) }
     requestAnimationFrame(raf)
+    setReady(true)
     return () => lenis.destroy()
   }, [])
 
   return (
     <>
       <Background />
-      <div className="content">
+      <motion.div
+        className="content"
+        initial={{ opacity: 0 }}
+        animate={ready ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+      >
         <Hero />
         <TokenSection />
         <Footer />
-      </div>
+      </motion.div>
     </>
   )
 }
