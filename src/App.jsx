@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import Lenis from 'lenis'
 import { config } from './config'
 import Hero from './components/Hero'
 import Community from './components/Community'
@@ -9,7 +10,11 @@ function App() {
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
+    const lenis = new Lenis({ duration: 1.2, easing: (t) => 1 - Math.pow(1 - t, 3) })
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf) }
+    requestAnimationFrame(raf)
     setReady(true)
+    return () => lenis.destroy()
   }, [])
 
   return (
